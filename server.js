@@ -750,6 +750,10 @@ app.post('/v1/users/me/challenges', function (req, res) {
         });
       }
 
+      console.log(req.body);
+
+      delete req.body.id;
+
       // bookmark the challenge for this user (active = false)
       r.table('challenges').insert(req.body).run(conn, function (err, reps) {
 
