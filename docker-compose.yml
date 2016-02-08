@@ -1,0 +1,16 @@
+api:
+  image: node:5.5.0-onbuild
+  env_file: configs.env
+  restart: always
+  ports:
+   - "3005:3000"
+  links:
+   - userstore:userstore
+   - sessionstore:sessionstore
+userstore:
+  image: rethinkdb:latest
+  restart: always
+sessionstore:
+  image: redis:latest
+  restart: always
+  command: redis-server --appendonly yes
